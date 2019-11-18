@@ -6,18 +6,6 @@ import java.util.regex.Pattern
 
 class EmailValidator : TextWatcher {
 
-    /**
-     * Email validation pattern.
-     */
-    val EMAIL_PATTERN: Pattern? = Pattern.compile(
-        "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
-                "\\@" +
-                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
-                "(" +
-                "\\." +
-                "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
-                ")+"
-    )
 
     /**
      * Validates if the given input is a valid email address.
@@ -25,7 +13,7 @@ class EmailValidator : TextWatcher {
      * @param email        The email to validate.
      * @return `true` if the input is a valid email. `false` otherwise.
      */
-    private fun isValidEmail(email: CharSequence?): Boolean {
+     fun isValidEmail(email: CharSequence?): Boolean {
         return email != null && EMAIL_PATTERN!!.matcher(email).matches()
     }
 
@@ -42,7 +30,21 @@ class EmailValidator : TextWatcher {
     }
 
     companion object {
+        /**
+         * Email validation pattern.
+         */
+        val EMAIL_PATTERN: Pattern? = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+"
+        )
         var misValid = false
-
+        fun isValidEmailTest(email: CharSequence?): Boolean {
+            return email != null && EMAIL_PATTERN!!.matcher(email).matches()
+        }
     }
 }
